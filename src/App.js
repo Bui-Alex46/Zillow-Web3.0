@@ -30,13 +30,17 @@ function App() {
 
   // Connecting react project to the blockchain using ethers js provider
   const loadBlockchainData = async () => {
+    // Web3Provider is a class provided by ethers
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     setProvider(provider)
+    console.log(provider)
 
     const network = await provider.getNetwork()
-
+    console.log(network)
     // Connect smart-contracts addresses using ethers js passing networkID, ABI, and provider
     const realEstate = new ethers.Contract(config[network.chainId].realEstate.address, RealEstate, provider )
+
+    console.log(realEstate)
     const totalSupply = await realEstate.totalSupply()
     const homes = []
 
